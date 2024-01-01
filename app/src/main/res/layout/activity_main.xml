@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="25dp"
+        android:text="@string/programs_list"
+        android:textSize="23sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/AddButton1"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+
+        android:backgroundTint="@color/material_dynamic_tertiary30"
+        android:clickable="true"
+
+        android:onClick="goToCurrentSoftware"
+        android:src="@android:drawable/ic_input_add"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:rippleColor="@color/material_dynamic_neutral100"
+        tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/sowtwareResiclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="5dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/bg_widget"
+        android:paddingTop="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <View
+        android:id="@+id/arrowBack"
+        style="@style/picker"
+        android:layout_width="36dp"
+        android:layout_height="35dp"
+        android:layout_marginEnd="4dp"
+        android:background="@drawable/dots"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
