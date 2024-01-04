@@ -66,10 +66,6 @@ public class MainActivity extends AppCompatActivity implements SoftwareRecyclerV
     private void fillList(){
         //Инициализация массивов
         getData();
-        //Инициализация коллекции имен в списке программного обеспечения
-        //String[]  listviewItemTitles = new String[softlist.size()];
-        //Resources res = getResources();
-        //f
 
         //Заполенение коллекции элементов отображения с помощью адаптера
         SoftwareRecyclerViewAdapter adapter = new SoftwareRecyclerViewAdapter(MainActivity.this, softlist);

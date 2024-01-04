@@ -29,7 +29,7 @@ public class SoftwareRecyclerViewAdapter extends RecyclerView.Adapter<SoftwareRe
 
         public ViewHolder(View view) {
             super(view);
-            // Define click listener for the ViewHolder's View
+            //  click listener для the ViewHolder's View
 
             p_name_textView = view.findViewById(R.id.lable_name);
             p_lic_textView = view.findViewById(R.id.lable_license);
@@ -67,22 +67,22 @@ public class SoftwareRecyclerViewAdapter extends RecyclerView.Adapter<SoftwareRe
         this.activity = activity;
     }
 
-    // Create new views (invoked by the layout manager)
+    // Создание новых views (вызваны layout manager)
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
-        // Create a new view, which defines the UI of the list item
+        // Создание нового view, который определяет UI элемента списка
         View view = LayoutInflater.from(viewGroup.getContext())
                 .inflate(R.layout.my_row, viewGroup, false);
 
         return new ViewHolder(view);
     }
 
-    // Replace the contents of a view (invoked by the layout manager)
+    // Заменяет содержимое view (вызвано layout manager)
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, final int position) {
 
-        //название прогрммного обеспечения
+        //название программного обеспечения
         viewHolder.p_name_textView.setText(String.valueOf(localDataSet.get(position).name));
         //лицензия распространения
         viewHolder.p_lic_textView.setText(activity.getString(R.string.p_license)+ System.lineSeparator() + localDataSet.get(position).license);

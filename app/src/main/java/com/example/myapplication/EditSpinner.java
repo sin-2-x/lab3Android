@@ -105,16 +105,12 @@ public class EditSpinner extends androidx.appcompat.widget.AppCompatEditText {
             setDropDownDrawableSpacing(dropDownDrawableSpacing);
         }
 
-        // Get the anchor's id now, but the view won't be ready, so wait to actually get the
-        // view and store it in mDropDownAnchorView lazily in getDropDownAnchorView later.
-        // Defaults to NO_ID, in which case the getDropDownAnchorView method will simply return
-        // this TextView, as a default anchoring point.
+        // Получение id элемента списка
         mDropDownAnchorId = a.getResourceId(R.styleable.EditSpinner_dropDownAnchor,
                 View.NO_ID);
 
 
-        // For dropdown width, the developer can specify a specific width, or MATCH_PARENT
-        // (for full screen width) or WRAP_CONTENT (to match the width of the anchored view).
+        // Установка ширины и высоты по родителю
         mPopup.setWidth(a.getLayoutDimension(R.styleable.EditSpinner_dropDownWidth,
                 ViewGroup.LayoutParams.WRAP_CONTENT));
         mPopup.setHeight(a.getLayoutDimension(R.styleable.EditSpinner_dropDownHeight,
@@ -342,7 +338,7 @@ public class EditSpinner extends androidx.appcompat.widget.AppCompatEditText {
             }
         }
         if (!isPopupShowing()) {
-            // Make sure the list does not obscure the IME when shown for the first time.
+            // Список не закрывает ввод при отображении
             mPopup.setInputMethodMode(ListPopupWindow.INPUT_METHOD_NEEDED);
         }
 
@@ -430,7 +426,7 @@ public class EditSpinner extends androidx.appcompat.widget.AppCompatEditText {
         clearComposingText();
 
         setText(text);
-        // make sure we keep the caret at the end of the text view
+        // курсор в конце текта
         Editable spannable = getText();
         Selection.setSelection(spannable, spannable.length());
     }
@@ -534,8 +530,7 @@ public class EditSpinner extends androidx.appcompat.widget.AppCompatEditText {
 
     void doBeforeTextChanged() {
 
-        // when text is changed, inserted or deleted, we attempt to show
-        // the drop down
+        // когда текст модифицирован, попытка показать в выпадающем списке
         mOpenBefore = isPopupShowing();
         if (DEBUG) {
             Log.v(TAG, "before text changed: open=" + mOpenBefore);
@@ -544,9 +539,7 @@ public class EditSpinner extends androidx.appcompat.widget.AppCompatEditText {
 
     void doAfterTextChanged() {
 
-        // if the list was open before the keystroke, but closed afterwards,
-        // then something in the keystroke processing (an input filter perhaps)
-        // called performCompletion() and we shouldn't do any more processing.
+        // если список закрылся до завершения действий, вызываем performCompletion()
         if (DEBUG) {
             Log.v(TAG, "after text changed: openBefore=" + mOpenBefore
                     + " open=" + isPopupShowing());
@@ -564,8 +557,6 @@ public class EditSpinner extends androidx.appcompat.widget.AppCompatEditText {
     @Override
     public boolean onKeyPreIme(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK && isPopupShowing()) {
-            // special case for the back key, we do not even try to send it
-            // to the drop down list but instead, consume it immediately
             if (event.getAction() == KeyEvent.ACTION_DOWN && event.getRepeatCount() == 0) {
                 KeyEvent.DispatcherState state = getKeyDispatcherState();
                 if (state != null) {
@@ -591,9 +582,6 @@ public class EditSpinner extends androidx.appcompat.widget.AppCompatEditText {
         boolean consumed = mPopup.onKeyUp(keyCode, event);
         if (consumed) {
             switch (keyCode) {
-                // if the list accepts the key events and the key event
-                // was a click, the text view gets the selected item
-                // from the drop down as its content
                 case KeyEvent.KEYCODE_ENTER:
                 case KeyEvent.KEYCODE_DPAD_CENTER:
                 case KeyEvent.KEYCODE_TAB:

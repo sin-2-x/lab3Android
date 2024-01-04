@@ -1,25 +1,16 @@
 package com.example.myapplication;
 
-import static android.app.PendingIntent.getActivity;
-
-import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.app.ActivityManager;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
-import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -34,9 +25,9 @@ public class AddActivity extends AppCompatActivity {
     DbHandler databaseHelper;
 
     //Коллекция типов лицензии
-    Map<String,Long> licenseValues = new HashMap<String,Long>();
+    Map<String,Long> licenseValues = new HashMap<>();
     //Коллекция производителей программного обеспечения
-    Map<String,Long> manufacturerValues = new HashMap<String,Long>();
+    Map<String,Long> manufacturerValues = new HashMap<>();
 
     //Поле ввода названия пограммного обеспечения
     TextView name;
@@ -49,9 +40,7 @@ public class AddActivity extends AppCompatActivity {
 
     //Идентификатор программного обеспечения из базы данных
     Long id = null;
-    Toast toast;
-    @SuppressLint("StaticFieldLeak")
-    private static Context c;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,23 +58,17 @@ public class AddActivity extends AppCompatActivity {
         getAllData();
         //Инициализация полей ввода
         initViews();
-        c = this;
 
         View arrowBack = findViewById(R.id.arrowBack);
-        arrowBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                goHome();
-            }
-        });
+        arrowBack.setOnClickListener(view -> goHome());
 
     }
 
     private void initViews() {
         //Привязка полей ввода разметки к переменным класса
         name = findViewById(R.id.NameTextView);
-        spinner = (Spinner) findViewById(R.id.LicencySpinner);
-        manufactorer = (EditSpinner) findViewById(R.id.ManufacturerSpinner);
+        spinner = findViewById(R.id.LicencySpinner);
+        manufactorer = findViewById(R.id.ManufacturerSpinner);
         description = findViewById(R.id.DescriptionTextView);
 
         // Заполенение списка разметки производителей
@@ -183,7 +166,7 @@ public class AddActivity extends AppCompatActivity {
             //создаем запись в бд
             databaseHelper.insert(DbHandler.TABLE_SOFTWARE.Name,cv);
         }
-        //Взврат на начальный экран
+        //Возврат на начальный экран
         goHome();
     }
     //Возвращает на экран родителя
