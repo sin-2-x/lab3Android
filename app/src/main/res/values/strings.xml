@@ -1,15 +1,13 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">Список программ кафедры</string>
     <string name="programs_list">Список программ кафедры:</string>
     <string name="save">Сохранить</string>
     <string name="delete">Удалить</string>
     <string name="description">Описание</string>
-    <string name="error1_text">Введите все координаты!</string>
     <string name="p_name">Название:</string>
     <string name="p_manufacturer">Производитель:</string>
     <string name="p_license">Лицензия:</string>
     <string name="p_description">Описание:</string>
     <string name="Apply">Ок</string>
-    <string name="softFormat">Название: %s\nПроизводитель: %s\nЛицензия: %s\nОписание:\n%s</string>
     <string name="softnamrerror">Введите название программного обеспечения</string>
 </resources>

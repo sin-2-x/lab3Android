@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 import static android.app.PendingIntent.getActivity;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.ContentValues;
@@ -49,6 +50,7 @@ public class AddActivity extends AppCompatActivity {
     //Идентификатор программного обеспечения из базы данных
     Long id = null;
     Toast toast;
+    @SuppressLint("StaticFieldLeak")
     private static Context c;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -25,7 +25,7 @@ public class SoftwareRecyclerViewAdapter extends RecyclerView.Adapter<SoftwareRe
 
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView p_name_textView, p_lic_textView, p_mauf_textView;
+        TextView p_name_textView, p_lic_textView, p_mauf_textView, p_description_textView;
 
         public ViewHolder(View view) {
             super(view);
@@ -34,6 +34,7 @@ public class SoftwareRecyclerViewAdapter extends RecyclerView.Adapter<SoftwareRe
             p_name_textView = view.findViewById(R.id.lable_name);
             p_lic_textView = view.findViewById(R.id.lable_license);
             p_mauf_textView = view.findViewById(R.id.lable_manufacturer);
+            p_description_textView = view.findViewById(R.id.lable_description);
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -81,21 +82,18 @@ public class SoftwareRecyclerViewAdapter extends RecyclerView.Adapter<SoftwareRe
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, final int position) {
 
-        // Get element from your dataset at this position and replace the
-        // contents of the view with that element
-
         //название прогрммного обеспечения
         viewHolder.p_name_textView.setText(String.valueOf(localDataSet.get(position).name));
-        // номер по порядку берется из текущей позиции + 1:
         //лицензия распространения
         viewHolder.p_lic_textView.setText(activity.getString(R.string.p_license)+ System.lineSeparator() + localDataSet.get(position).license);
         //производитель программного обеспечения:
         viewHolder.p_mauf_textView.setText(activity.getString(R.string.p_manufacturer)+ System.lineSeparator()+localDataSet.get(position).manufacturer);
-
+        //описание программного обеспечения
+        viewHolder.p_description_textView.setText(activity.getString(R.string.p_description)+ System.lineSeparator()+ localDataSet.get(position).description);
 
     }
 
-    // Return the size of your dataset (invoked by the layout manager)
+    // возвращает размер коллекции
     @Override
     public int getItemCount() {
         return localDataSet.size();
